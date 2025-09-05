@@ -26,14 +26,28 @@
 
         Qv =
             0.82*LatentHeatVap*Mm*p0
-           *Foam::exp(LatentHeatVap*Mm*((T - Tvap)/(R*T*Tvap)))
+           *Foam::exp(LatentHeatVap*Mm*((T - Tvap_atm)/(R*T*Tvap_atm)))
            /Foam::pow(2*M_PI*Mm*R*T,0.5);
+
+        // Apply temperature threshold for evaporative cooling - only active when T > Tvap
+        const scalar TvapValue = Tvap.value();
+        const scalarField& TI = T;
+        scalarField& QvI = Qv;
+
+        forAll(QvI, celli)
+        {
+            if(TI[celli] <= TvapValue)
+            {
+                QvI[celli] = 0.0;  // No evaporation below vaporization temperature
+            }
+        }
+
+        Qv.correctBoundaryConditions();
 
         if (damperSwitch)
         {
             scalarField& thermalDamperI = thermalDamper;
             const scalarField& rhoCpI = rhoCp;
-            const scalarField& TI = T;
             forAll(thermalDamperI, celli)
             {
 		 thermalDamperI[celli] =
@@ -112,8 +126,3 @@
 
     gradT = fvc::grad(T);
 }
-
-
-
-
-

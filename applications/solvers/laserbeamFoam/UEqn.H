@@ -39,7 +39,25 @@ if (damperSwitch)
     damper = 2.0*rho/(rho1 + rho2);
 }
 
-pVap = 0.54*p0*Foam::exp(LatentHeatVap*Mm*((T - Tvap)/(R*T*Tvap)));
+// pVap = 0.54*p0*Foam::exp(LatentHeatVap*Mm*((T - Tvap)/(R*T*Tvap)));
+pVap = 0.54*p0*Foam::exp(LatentHeatVap*Mm*((T - Tvap_atm)/(R*T*Tvap_atm)))
+     + p0 - p_amb;
+
+
+// Apply temperature threshold for recoil pressure - only active when T > Tvap
+const scalar TvapValue = Tvap.value();
+scalarField& pVapI = pVap;
+
+forAll(pVapI, celli)
+{
+    if(TI[celli] <= TvapValue)
+    {
+        pVapI[celli] = 0.0;  // No recoil pressure below vaporization temperature
+    }
+}
+
+pVap.correctBoundaryConditions();
+
 
 fvVectorMatrix UEqn
 (

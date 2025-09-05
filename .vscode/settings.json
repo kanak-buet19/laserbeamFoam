@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "laserHeatSource.C": "cpp"
+        "laserHeatSource.C": "cpp",
+        "laserbeamFoam.C": "cpp",
+        "cmath": "cpp"
     }
 }

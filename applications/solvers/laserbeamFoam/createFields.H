@@ -218,11 +218,25 @@ const dimensionedScalar p0
     phaseProperties.lookup("p0")
 ); // atmospheric pressure
 
+const dimensionedScalar p_amb
+(
+    "p_amb",
+    dimensionSet(1, -1, -2, 0, 0, 0, 0),
+    phaseProperties.lookup("p_amb")
+); // ambient pressure
+
 const dimensionedScalar Tvap
 (
     "Tvap",
     dimensionSet(0, 0, 0, 1, 0),
     phaseProperties.lookup("Tvap")
+);
+
+const dimensionedScalar Tvap_atm
+(
+    "Tvap_atm",
+    dimensionSet(0, 0, 0, 1, 0),
+    phaseProperties.lookup("Tvap_atm")
 );
 
 const dimensionedScalar Mm

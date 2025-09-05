@@ -16,12 +16,19 @@ FoamFile
 
 phases          (metal gas);
 
+// Surface tension properties
 sigma           0.07;
+dsigmadT        -0.5e-4;
 
-dsigmadT	-0.5e-4;
+// Pressure properties
+p0              100000.0;
+p_amb           101325.0;
 
-p0		100000.0;
-Tvap 3068.0;
-Mm 5.58e-2;
-LatentHeatVap 7.45e6;
+// Vaporization properties
+Tvap            3068.0;
+Mm              5.58e-2;
+LatentHeatVap   7.45e6;
+
+Tvap_atm        3068.0 ; 
+
 // ************************************************************************* //
