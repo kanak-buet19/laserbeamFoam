@@ -1,0 +1,24 @@
+#!/bin/bash
+#------------------------------------------------------------------------------
+# Allrun script for laserbeamFoam tutorial
+# Prepares the case, decomposes the domain, and runs solver in parallel
+#------------------------------------------------------------------------------
+
+# Source OpenFOAM tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+echo "Copying initial conditions from 'initial' to '0' directory..."
+cp -r initial 0
+
+echo "Generating mesh with blockMesh..."
+runApplication blockMesh
+
+echo "Setting initial fields with setFields..."
+runApplication setFields
+
+echo "Decomposing the domain for parallel run (8 processors)..."
+runApplication decomposePar
+
+echo "Starting parallel run with 8 processors..."
+mpirun -np 4 laserbeamFoam -parallel 
+echo "Run complete. Check log.laserbeamFoam for output."
