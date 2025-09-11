@@ -1,0 +1,54 @@
+{
+  "description": "Single case with ALL available parameters explicitly defined",
+  "comment": "This shows every single parameter that can be modified in one case",
+  
+  "cases": [
+    {
+      "comment": "Complete parameter set - modify any of these values as needed",
+      
+      "gravity": [0, 9.81, 0],
+      
+      "laser": {
+        "radius": "50e-6",
+        "e_num_density": "1.8e29",
+        "radius_flavour": "3.0",
+        "powder_sim": false
+      },
+      
+      "phase": {
+        "sigma": "0.91",
+        "dsigmadT": "-3.5e-4",
+        "p_amb": "100000.0",
+        "Tvap": "2792"
+      },
+      
+      "gas": {
+        "nu": "1.48e-05",
+        "rho": "1",
+        "poly_kappa": [0.04],
+        "poly_cp": [520],
+        "beta": "4.0e-5"
+      },
+      
+      "metal": {
+        "elec_resistivity": "3e-7"
+      },
+      
+      "mesh": {
+        "width": 0.6e-3,
+        "track_length": 2.0e-3,
+        "patching_height": 0.5e-3,
+        "mesh_size": 10e-6
+      },
+      
+      "time": {
+        "total_time": 2500e-6,
+        "scan_speed": 0.5,
+        "laser_power": 370
+      }
+    }
+
+
+    
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "description": "Single case with ALL available parameters explicitly defined",
+    "comment": "This shows every single parameter that can be modified in one case",
+  
+    "cases": [
+      {
+        "comment": "case - 1",
+        "phase": 
+        {
+          "p_amb": "100000.0",
+
+        }
+      }
+    ]
+  }
+  
